@@ -1,0 +1,6 @@
+framework module Pods_ReceiptRestoration {
+  umbrella header "Pods-ReceiptRestoration-umbrella.h"
+
+  export *
+  module * { export * }
+}

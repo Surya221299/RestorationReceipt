@@ -1,0 +1,669 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5B41D2C83802AF29CB1174B1 /* Pods_ReceiptRestoration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011551CD2C296E0FB4CF83DA /* Pods_ReceiptRestoration.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		53A19B3D2FBA18B400599F8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53A19B272FBA18B100599F8E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 53A19B2E2FBA18B100599F8E;
+			remoteInfo = ReceiptRestoration;
+		};
+		53A19B472FBA18B400599F8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53A19B272FBA18B100599F8E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 53A19B2E2FBA18B100599F8E;
+			remoteInfo = ReceiptRestoration;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		011551CD2C296E0FB4CF83DA /* Pods_ReceiptRestoration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReceiptRestoration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E22AD4F1DBA6D43E6C8B3C8 /* Pods-ReceiptRestoration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptRestoration.debug.xcconfig"; path = "Target Support Files/Pods-ReceiptRestoration/Pods-ReceiptRestoration.debug.xcconfig"; sourceTree = "<group>"; };
+		53A19B2F2FBA18B100599F8E /* ReceiptRestoration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptRestoration.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		53A19B3C2FBA18B400599F8E /* ReceiptRestorationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReceiptRestorationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		53A19B462FBA18B400599F8E /* ReceiptRestorationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReceiptRestorationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D88C92606815598DA9CB31A3 /* Pods-ReceiptRestoration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptRestoration.release.xcconfig"; path = "Target Support Files/Pods-ReceiptRestoration/Pods-ReceiptRestoration.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		53A19C9B2FBA26EF00599F8E /* Exceptions for "ReceiptRestoration" folder in "ReceiptRestoration" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 53A19B2E2FBA18B100599F8E /* ReceiptRestoration */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		53A19B312FBA18B100599F8E /* ReceiptRestoration */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				53A19C9B2FBA26EF00599F8E /* Exceptions for "ReceiptRestoration" folder in "ReceiptRestoration" target */,
+			);
+			path = ReceiptRestoration;
+			sourceTree = "<group>";
+		};
+		53A19B3F2FBA18B400599F8E /* ReceiptRestorationTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ReceiptRestorationTests;
+			sourceTree = "<group>";
+		};
+		53A19B492FBA18B400599F8E /* ReceiptRestorationUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ReceiptRestorationUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		53A19B2C2FBA18B100599F8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B41D2C83802AF29CB1174B1 /* Pods_ReceiptRestoration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53A19B392FBA18B400599F8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53A19B432FBA18B400599F8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0710AB6E24CAAEA63A29E81B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				011551CD2C296E0FB4CF83DA /* Pods_ReceiptRestoration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		53A19B262FBA18B100599F8E = {
+			isa = PBXGroup;
+			children = (
+				53A19B312FBA18B100599F8E /* ReceiptRestoration */,
+				53A19B3F2FBA18B400599F8E /* ReceiptRestorationTests */,
+				53A19B492FBA18B400599F8E /* ReceiptRestorationUITests */,
+				53A19B302FBA18B100599F8E /* Products */,
+				CCBE6B3166B224377889AB70 /* Pods */,
+				0710AB6E24CAAEA63A29E81B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		53A19B302FBA18B100599F8E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				53A19B2F2FBA18B100599F8E /* ReceiptRestoration.app */,
+				53A19B3C2FBA18B400599F8E /* ReceiptRestorationTests.xctest */,
+				53A19B462FBA18B400599F8E /* ReceiptRestorationUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CCBE6B3166B224377889AB70 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E22AD4F1DBA6D43E6C8B3C8 /* Pods-ReceiptRestoration.debug.xcconfig */,
+				D88C92606815598DA9CB31A3 /* Pods-ReceiptRestoration.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		53A19B2E2FBA18B100599F8E /* ReceiptRestoration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53A19B502FBA18B400599F8E /* Build configuration list for PBXNativeTarget "ReceiptRestoration" */;
+			buildPhases = (
+				CB9A2011C78762375592BD3E /* [CP] Check Pods Manifest.lock */,
+				53A19B2B2FBA18B100599F8E /* Sources */,
+				53A19B2C2FBA18B100599F8E /* Frameworks */,
+				53A19B2D2FBA18B100599F8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				53A19B312FBA18B100599F8E /* ReceiptRestoration */,
+			);
+			name = ReceiptRestoration;
+			productName = ReceiptRestoration;
+			productReference = 53A19B2F2FBA18B100599F8E /* ReceiptRestoration.app */;
+			productType = "com.apple.product-type.application";
+		};
+		53A19B3B2FBA18B400599F8E /* ReceiptRestorationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53A19B532FBA18B400599F8E /* Build configuration list for PBXNativeTarget "ReceiptRestorationTests" */;
+			buildPhases = (
+				53A19B382FBA18B400599F8E /* Sources */,
+				53A19B392FBA18B400599F8E /* Frameworks */,
+				53A19B3A2FBA18B400599F8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				53A19B3E2FBA18B400599F8E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				53A19B3F2FBA18B400599F8E /* ReceiptRestorationTests */,
+			);
+			name = ReceiptRestorationTests;
+			productName = ReceiptRestorationTests;
+			productReference = 53A19B3C2FBA18B400599F8E /* ReceiptRestorationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		53A19B452FBA18B400599F8E /* ReceiptRestorationUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53A19B562FBA18B400599F8E /* Build configuration list for PBXNativeTarget "ReceiptRestorationUITests" */;
+			buildPhases = (
+				53A19B422FBA18B400599F8E /* Sources */,
+				53A19B432FBA18B400599F8E /* Frameworks */,
+				53A19B442FBA18B400599F8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				53A19B482FBA18B400599F8E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				53A19B492FBA18B400599F8E /* ReceiptRestorationUITests */,
+			);
+			name = ReceiptRestorationUITests;
+			productName = ReceiptRestorationUITests;
+			productReference = 53A19B462FBA18B400599F8E /* ReceiptRestorationUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		53A19B272FBA18B100599F8E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2650;
+				LastUpgradeCheck = 2650;
+				TargetAttributes = {
+					53A19B2E2FBA18B100599F8E = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					53A19B3B2FBA18B400599F8E = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 53A19B2E2FBA18B100599F8E;
+					};
+					53A19B452FBA18B400599F8E = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 53A19B2E2FBA18B100599F8E;
+					};
+				};
+			};
+			buildConfigurationList = 53A19B2A2FBA18B100599F8E /* Build configuration list for PBXProject "MBG Receipt Restoration" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 53A19B262FBA18B100599F8E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 53A19B302FBA18B100599F8E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				53A19B2E2FBA18B100599F8E /* ReceiptRestoration */,
+				53A19B3B2FBA18B400599F8E /* ReceiptRestorationTests */,
+				53A19B452FBA18B400599F8E /* ReceiptRestorationUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		53A19B2D2FBA18B100599F8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53A19B3A2FBA18B400599F8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53A19B442FBA18B400599F8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CB9A2011C78762375592BD3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReceiptRestoration-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		53A19B2B2FBA18B100599F8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53A19B382FBA18B400599F8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53A19B422FBA18B400599F8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		53A19B3E2FBA18B400599F8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 53A19B2E2FBA18B100599F8E /* ReceiptRestoration */;
+			targetProxy = 53A19B3D2FBA18B400599F8E /* PBXContainerItemProxy */;
+		};
+		53A19B482FBA18B400599F8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 53A19B2E2FBA18B100599F8E /* ReceiptRestoration */;
+			targetProxy = 53A19B472FBA18B400599F8E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		53A19B4E2FBA18B400599F8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6FN8D75J6K;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		53A19B4F2FBA18B400599F8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6FN8D75J6K;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		53A19B512FBA18B400599F8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E22AD4F1DBA6D43E6C8B3C8 /* Pods-ReceiptRestoration.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FY2ZUW5Q3B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ReceiptRestoration/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "MBG Receipt Restoration";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture receipt images for restoration.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save restored receipt images to your photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select receipt images for restoration.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledev.ReceiptRestoration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		53A19B522FBA18B400599F8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D88C92606815598DA9CB31A3 /* Pods-ReceiptRestoration.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FY2ZUW5Q3B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ReceiptRestoration/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "MBG Receipt Restoration";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture receipt images for restoration.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save restored receipt images to your photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select receipt images for restoration.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledev.ReceiptRestoration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		53A19B542FBA18B400599F8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6FN8D75J6K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture receipt images for restoration.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save restored receipt images to your photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select receipt images for restoration.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledev.ReceiptRestorationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReceiptRestoration.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ReceiptRestoration";
+			};
+			name = Debug;
+		};
+		53A19B552FBA18B400599F8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6FN8D75J6K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture receipt images for restoration.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save restored receipt images to your photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select receipt images for restoration.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledev.ReceiptRestorationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReceiptRestoration.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ReceiptRestoration";
+			};
+			name = Release;
+		};
+		53A19B572FBA18B400599F8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6FN8D75J6K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture receipt images for restoration.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save restored receipt images to your photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select receipt images for restoration.";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledev.ReceiptRestorationUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ReceiptRestoration;
+			};
+			name = Debug;
+		};
+		53A19B582FBA18B400599F8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6FN8D75J6K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture receipt images for restoration.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save restored receipt images to your photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select receipt images for restoration.";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledev.ReceiptRestorationUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ReceiptRestoration;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		53A19B2A2FBA18B100599F8E /* Build configuration list for PBXProject "MBG Receipt Restoration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53A19B4E2FBA18B400599F8E /* Debug */,
+				53A19B4F2FBA18B400599F8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		53A19B502FBA18B400599F8E /* Build configuration list for PBXNativeTarget "ReceiptRestoration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53A19B512FBA18B400599F8E /* Debug */,
+				53A19B522FBA18B400599F8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		53A19B532FBA18B400599F8E /* Build configuration list for PBXNativeTarget "ReceiptRestorationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53A19B542FBA18B400599F8E /* Debug */,
+				53A19B552FBA18B400599F8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		53A19B562FBA18B400599F8E /* Build configuration list for PBXNativeTarget "ReceiptRestorationUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53A19B572FBA18B400599F8E /* Debug */,
+				53A19B582FBA18B400599F8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 53A19B272FBA18B100599F8E /* Project object */;
+}
