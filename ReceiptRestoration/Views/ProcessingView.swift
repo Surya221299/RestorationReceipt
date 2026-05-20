@@ -22,23 +22,27 @@ struct ProcessingView: View {
     @State private var showResultSheet: Bool = false
     @State private var sheetDetent: PresentationDetent = .medium
 
+    // FIX: simpan ukuran gambar yang di-upload (bukan image.size asli).
+    // Koordinat bbox dari server mengacu ke ukuran ini.
+    @State private var uploadedImageSize: CGSize = .zero
+
     var body: some View {
         GeometryReader { screen in
             ZStack(alignment: .bottom) {
                 Color.black.ignoresSafeArea()
 
-                // MARK: - Image full screen + bounding boxes
                 ZStack {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
                         .frame(width: screen.size.width, height: screen.size.height)
 
-                    // Bounding boxes overlay
-                    if !ocrTexts.isEmpty {
+                    // FIX: gunakan uploadedImageSize sebagai referensi koordinat bbox,
+                    // bukan image.size (resolusi kamera asli yang jauh lebih besar).
+                    if !ocrTexts.isEmpty && uploadedImageSize != .zero {
                         BoundingBoxOverlay(
                             ocrTexts: ocrTexts,
-                            imageSize: image.size,
+                            imageSize: uploadedImageSize,  // ← koordinat server
                             displaySize: CGSize(
                                 width: screen.size.width,
                                 height: screen.size.height
@@ -68,7 +72,6 @@ struct ProcessingView: View {
             }
         }
         .ignoresSafeArea()
-        //.navigationTitle("Hasil Scan")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .task { await runOCR() }
@@ -94,7 +97,6 @@ struct ProcessingView: View {
             .presentationDragIndicator(.visible)
             .presentationBackgroundInteraction(.enabled)
             .interactiveDismissDisabled(true)
-
         }
     }
 
@@ -102,16 +104,19 @@ struct ProcessingView: View {
         isProcessing = true
         errorMessage = nil
         do {
-            let response = try await OCRService.uploadReceipt(image: image)
-            ocrTexts = response.raw
-            
-            // Pass originalSize.height — ini resolusi asli gambar
-            // bbox dari OCR server sudah dalam koordinat original image
+            // FIX: terima OCRUploadResult yang berisi response + uploadedSize
+            let result = try await OCRService.uploadReceipt(image: image)
+
+            ocrTexts = result.response.raw
+            uploadedImageSize = result.uploadedSize  // ← simpan untuk BoundingBoxOverlay
+
+            // FIX: pakai uploadedSize.height bukan image.size.height
+            // karena bbox dari server mengacu ke koordinat gambar yang di-upload
             parsedData = ReceiptParser.parse(
-                raw: response.raw,
-                imageHeight: Double(image.size.height)  // ← gunakan ini
+                raw: result.response.raw,
+                imageHeight: Double(result.uploadedSize.height)  // ← ukuran yang benar
             )
-            
+
             withAnimation { showResultSheet = true }
         } catch {
             errorMessage = "Gagal memproses: \(error.localizedDescription)"
@@ -124,8 +129,8 @@ struct ProcessingView: View {
 
 struct BoundingBoxOverlay: View {
     let ocrTexts: [OCRText]
-    let imageSize: CGSize
-    let displaySize: CGSize
+    let imageSize: CGSize   // ukuran gambar yang di-upload ke server (koordinat bbox)
+    let displaySize: CGSize // ukuran tampilan di layar
 
     // Hitung scale dan offset untuk scaledToFit
     private var transform: (scale: CGFloat, offsetX: CGFloat, offsetY: CGFloat) {
@@ -257,9 +262,3 @@ struct ResultSheetView: View {
         }
     }
 }
-
-//// MARK: - Notification
-//
-//extension Notification.Name {
-//    static let dismissToHome = Notification.Name("dismissToHome")
-//}

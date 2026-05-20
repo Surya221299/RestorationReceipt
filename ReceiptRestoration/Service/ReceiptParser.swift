@@ -17,7 +17,7 @@ struct ReceiptParser {
     private static let qtyAfterRegex = /^x\d+$|^\d+x$/
     private static let qtyStandaloneRegex = /^\d{1,3}$/
     private static let dateRegex = /\d{4}-\d{2}-\d{2}/
-    private static let dateAltRegex = /\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{2,4}/
+    private static let dateAltRegex = /\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-zA-Z]*\s+\d{2,4}/
     private static let numberedRegex = /^\d+[.\)]\s*(.+)/
 
     private static let skipKeywords: [String] = [
@@ -27,127 +27,61 @@ struct ReceiptParser {
         "terima kasih", "thank you", "please come", "powered",
         "kasir", "pelanggan", "no.meja", "kode struk", "tanggal",
         "pass", "wifi", "checkno", "closed", "pos1", "www.",
-        "http", "ruko", "jl.", "jalan", "(021)", "1 pos"
+        "http", "ruko", "jl.", "jalan", "(021)", "1 pos", "1pos"
     ]
 
     // MARK: - Entry Point
 
-    // MARK: - Row Threshold
-        private static func rowThreshold(for imageHeight: Double) -> Double {
-            let ratio = 0.015
-            let computed = imageHeight * ratio
-            return min(max(computed, 15), 80)
-        }
     static func parse(raw: [OCRText], imageHeight: Double) -> ParsedReceiptData {
         return ParsedReceiptData(
-            storeName: extractStoreName(from: raw.map { $0.text }),
+            storeName: extractStoreName(from: raw),
             date: extractDate(from: raw.map { $0.text }),
-            items: extractItemsByBBox(from: raw, imageHeight: imageHeight),
-            total: extractTotal(from: raw, imageHeight: imageHeight)
+            items: extractItemsByBBox(from: raw),
+            total: extractTotal(from: raw)
         )
     }
 
-   // private static func extractItemsByBBox(from raw: [OCRText]) -> [ReceiptItem] {
-    private static func extractItemsByBBox(from raw: [OCRText], imageHeight: Double) -> [ReceiptItem] {
-        let threshold = rowThreshold(for: imageHeight)
+    // MARK: - Row Threshold (adaptif dari tinggi teks aktual)
+    //
+    // Alih-alih menghitung dari imageHeight (yang tidak stabil lintas resolusi),
+    // kita ukur median tinggi baris teks dari bbox itu sendiri, lalu pakai
+    // sebagai acuan threshold grouping.
+    // Ini bekerja konsisten di 288px maupun 4032px karena bbox selalu proporsional.
 
-        // 1. Cari stop index sebelum Subtotal/Total
-        let stopY: Double = raw
-            .first(where: {
-                let t = $0.text.trimmingCharacters(in: .whitespaces).lowercased()
-                return t.hasPrefix("subtotal") || t == "total:"
-            })
-            .map { $0.bbox[0][1] } ?? Double.greatestFiniteMagnitude
+    private static func medianLineHeight(from raw: [OCRText]) -> Double {
+        let heights = raw.map { token -> Double in
+            let topY    = token.bbox[0][1]
+            let bottomY = token.bbox[2][1]
+            return abs(bottomY - topY)
+        }.filter { $0 > 2 }.sorted()
 
-        // 2. Filter hanya zona item
-        let itemZone = raw.filter { $0.bbox[0][1] < stopY }
-
-        // 3. Sort by Y
-        let sortedByY = itemZone.sorted { $0.bbox[0][1] < $1.bbox[0][1] }
-
-        // 4. Grouping ke rows — threshold lebih besar untuk real device
-        var rows: [[OCRText]] = []
-        var currentRow: [OCRText] = []
-        var lastY: Double = -1
-
-        for token in sortedByY {
-            let y = token.bbox[0][1]
-            // Threshold 60px untuk real device (resolusi 4032px)
-            if lastY < 0 || abs(y - lastY) < 60 {
-                currentRow.append(token)
-            } else {
-                if !currentRow.isEmpty { rows.append(currentRow) }
-                currentRow = [token]
-            }
-            lastY = y
-        }
-        if !currentRow.isEmpty { rows.append(currentRow) }
-
-        // 5. Tiap row: kiri = nama, kanan = harga
-        // Tapi satu item bisa tersebar di 2 rows (nama Y != harga Y)
-        // Jadi perlu pair: row yang hanya berisi harga → gabungkan dengan row nama terdekat
-        var result: [ReceiptItem] = []
-
-        var i = 0
-        while i < rows.count {
-            let row = rows[i]
-            let sortedRow = row.sorted { $0.bbox[0][0] < $1.bbox[0][0] }
-
-            let leftToken  = sortedRow.first!
-            let rightToken = sortedRow.last!
-
-            let leftText  = leftToken.text.trimmingCharacters(in: .whitespaces)
-            let rightText = rightToken.text.trimmingCharacters(in: .whitespaces)
-
-            // Case A: Row berisi nama DAN harga (simulator-style / baris rapi)
-            if leftText.firstMatch(of: priceRegex) == nil
-                && rightText.firstMatch(of: priceRegex) != nil
-                && !isSkippable(leftText)
-                && leftText != rightText {
-                result.append(ReceiptItem(
-                    name: leftText,
-                    qty: nil,
-                    price: formatPrice(rightText)
-                ))
-                i += 1
-
-            // Case B: Row hanya berisi harga (real device — harga Y lebih kecil dari nama)
-            } else if leftText.firstMatch(of: priceRegex) != nil && row.count == 1 {
-                // Lihat row berikutnya — seharusnya nama item
-                if i + 1 < rows.count {
-                    let nextRow = rows[i + 1].sorted { $0.bbox[0][0] < $1.bbox[0][0] }
-                    let nameText = nextRow.first?.text.trimmingCharacters(in: .whitespaces) ?? ""
-                    if !isSkippable(nameText) && nameText.firstMatch(of: priceRegex) == nil {
-                        result.append(ReceiptItem(
-                            name: nameText,
-                            qty: nil,
-                            price: formatPrice(leftText)
-                        ))
-                        i += 2  // skip row nama juga
-                        continue
-                    }
-                }
-                i += 1
-
-            // Case C: Row hanya nama (harga sudah dikonsumsi di atas, atau memang tidak ada)
-            } else {
-                i += 1
-            }
-        }
-
-        return result
+        guard !heights.isEmpty else { return 12.0 }
+        return heights[heights.count / 2]
     }
+
+    /// Threshold grouping = 60% dari median tinggi baris.
+    /// Logikanya: dua token di baris yang sama punya Y berdekatan (< 1 tinggi baris).
+    /// Token di baris berbeda punya Y gap ≥ 1 tinggi baris.
+    /// 60% memberi ruang jitter OCR tanpa over-grouping.
+    private static func rowThreshold(from raw: [OCRText]) -> Double {
+        let lineH = medianLineHeight(from: raw)
+        return lineH * 0.6
+    }
+
     // MARK: - Store Name
 
-    private static func extractStoreName(from texts: [String]) -> String? {
-        for text in texts {
-            let t = text.trimmingCharacters(in: .whitespaces)
+    private static func extractStoreName(from raw: [OCRText]) -> String? {
+        // Ambil token paling atas (Y terkecil), skip yang terlalu pendek / noise
+        let sorted = raw.sorted { $0.bbox[0][1] < $1.bbox[0][1] }
+        for token in sorted {
+            let t = token.text.trimmingCharacters(in: .whitespaces)
             guard t.count >= 3 else { continue }
             guard !t.allSatisfy({ $0.isNumber || $0 == "-" || $0 == " " }) else { continue }
             guard !isSkippable(t) else { continue }
+            guard t.firstMatch(of: priceRegex) == nil else { continue }
             return t
         }
-        return texts.first
+        return raw.first?.text
     }
 
     // MARK: - Date
@@ -160,179 +94,143 @@ struct ReceiptParser {
         return nil
     }
 
-    // MARK: - Items
+    // MARK: - Items (bbox-based)
 
-    private static func extractItems(from texts: [String]) -> [ReceiptItem] {
-        if texts.contains(where: { $0.firstMatch(of: numberedRegex) != nil }) {
-            return parseNumberedFormat(texts)
-        }
-        if detectsQtyFirstFormat(texts) {
-            return parseQtyFirstFormat(texts)
-        }
-        return parseNameFirstFormat(texts)
-    }
+    private static func extractItemsByBBox(from raw: [OCRText]) -> [ReceiptItem] {
+        let threshold = rowThreshold(from: raw)
+        print("📏 rowThreshold=\(String(format: "%.1f", threshold))px  medianLineH=\(String(format: "%.1f", medianLineHeight(from: raw)))px")
 
-    private static func detectsQtyFirstFormat(_ texts: [String]) -> Bool {
-        let stop = stopIndex(in: texts)
-        for i in 0..<stop {
-            let t = texts[i].trimmingCharacters(in: .whitespaces)
-            guard t.firstMatch(of: qtyStandaloneRegex) != nil else { continue }
-            if i + 1 < stop {
-                let next = texts[i + 1].trimmingCharacters(in: .whitespaces)
-                if next.firstMatch(of: priceRegex) == nil && !isSkippable(next) && next.count > 2 {
-                    return true
-                }
+        // 1. Cari stopY — baris Subtotal/Total pertama
+        let stopY: Double = raw
+            .filter {
+                let t = $0.text.trimmingCharacters(in: .whitespaces).lowercased()
+                return t.hasPrefix("subtotal") || t == "total:" || t == "total"
             }
-        }
-        return false
-    }
+            .map { $0.bbox[0][1] }
+            .min() ?? Double.greatestFiniteMagnitude
 
-    private static func parseNumberedFormat(_ texts: [String]) -> [ReceiptItem] {
-        var items: [ReceiptItem] = []
+        // 2. Filter zona item saja
+        let itemZone = raw.filter { $0.bbox[0][1] < stopY }
+
+        // 3. Sort by Y lalu X
+        let sortedByY = itemZone.sorted {
+            let dy = $0.bbox[0][1] - $1.bbox[0][1]
+            if abs(dy) < threshold { return $0.bbox[0][0] < $1.bbox[0][0] }
+            return dy < 0
+        }
+
+        // 4. Grouping ke rows menggunakan threshold adaptif
+        var rows: [[OCRText]] = []
+        var currentRow: [OCRText] = []
+        var lastY: Double = -1
+
+        for token in sortedByY {
+            let y = token.bbox[0][1]
+            if lastY < 0 || abs(y - lastY) < threshold {
+                currentRow.append(token)
+            } else {
+                if !currentRow.isEmpty { rows.append(currentRow) }
+                currentRow = [token]
+            }
+            lastY = y
+        }
+        if !currentRow.isEmpty { rows.append(currentRow) }
+
+        print("📦 Rows di item zone: \(rows.count)")
+        for (i, row) in rows.enumerated() {
+            let texts = row.sorted { $0.bbox[0][0] < $1.bbox[0][0] }.map { $0.text }
+            print("  row[\(i)]: \(texts)")
+        }
+
+        // 5. Parse tiap row: kiri = nama, kanan = harga
+        var result: [ReceiptItem] = []
         var i = 0
-        while i < texts.count {
-            let text = texts[i]
-            if let match = text.firstMatch(of: numberedRegex) {
-                let name = String(match.output.1).trimmingCharacters(in: .whitespaces)
-                var qty: String? = nil
-                var price: String? = nil
-                if i + 1 < texts.count {
-                    let next = texts[i + 1]
-                    let isQty = next.contains("x") || next.lowercased().contains("lusin") || next.lowercased().contains("pcs")
-                    if isQty {
-                        qty = next
-                        if i + 2 < texts.count, texts[i + 2].firstMatch(of: priceRegex) != nil {
-                            price = formatPrice(texts[i + 2])
-                            i += 2
-                        } else { i += 1 }
-                    } else if next.firstMatch(of: priceRegex) != nil {
-                        price = formatPrice(next)
-                        i += 1
+
+        while i < rows.count {
+            let row = rows[i]
+            let sortedRow = row.sorted { $0.bbox[0][0] < $1.bbox[0][0] }
+
+            let leftText  = sortedRow.first!.text.trimmingCharacters(in: .whitespaces)
+            let rightText = sortedRow.last!.text.trimmingCharacters(in: .whitespaces)
+
+            // Case A: Row berisi nama (kiri) + harga (kanan)
+            if sortedRow.count >= 2,
+               leftText.firstMatch(of: priceRegex) == nil,
+               rightText.firstMatch(of: priceRegex) != nil,
+               !isSkippable(leftText),
+               leftText != rightText {
+
+                result.append(ReceiptItem(
+                    name: cleanItemName(leftText),
+                    qty: nil,
+                    price: formatPrice(rightText)
+                ))
+                i += 1
+
+            // Case B: Row hanya berisi harga — cari nama di row berikutnya
+            } else if sortedRow.count == 1,
+                      leftText.firstMatch(of: priceRegex) != nil {
+
+                if i + 1 < rows.count {
+                    let nextRow = rows[i + 1].sorted { $0.bbox[0][0] < $1.bbox[0][0] }
+                    let nameText = nextRow.first?.text.trimmingCharacters(in: .whitespaces) ?? ""
+                    if !isSkippable(nameText), nameText.firstMatch(of: priceRegex) == nil {
+                        result.append(ReceiptItem(
+                            name: cleanItemName(nameText),
+                            qty: nil,
+                            price: formatPrice(leftText)
+                        ))
+                        i += 2
+                        continue
                     }
                 }
-                items.append(ReceiptItem(name: name, qty: qty, price: price))
-            }
-            i += 1
-        }
-        return items
-    }
+                i += 1
 
-    private static func parseNameFirstFormat(_ texts: [String]) -> [ReceiptItem] {
-        var items: [ReceiptItem] = []
-        let stop = stopIndex(in: texts)
-        let start = startIndexForNameFirst(texts, stop: stop)
-        var i = start
-        while i < stop {
-            let text = texts[i].trimmingCharacters(in: .whitespaces)
-            guard !text.isEmpty,
-                  !isSkippable(text),
-                  text.firstMatch(of: priceRegex) == nil,
-                  text.firstMatch(of: qtyAfterRegex) == nil,
-                  text.firstMatch(of: qtyStandaloneRegex) == nil
-            else { i += 1; continue }
-
-            var qty: String? = nil
-            var price: String? = nil
-            var advance = 0
-            if i + 1 < stop {
-                let next = texts[i + 1].trimmingCharacters(in: .whitespaces)
-                if next.firstMatch(of: qtyAfterRegex) != nil {
-                    qty = next; advance = 1
-                    if i + 2 < stop, texts[i + 2].firstMatch(of: priceRegex) != nil {
-                        price = formatPrice(texts[i + 2]); advance = 2
-                    }
-                } else if next.firstMatch(of: priceRegex) != nil {
-                    price = formatPrice(next); advance = 1
-                }
-            }
-            items.append(ReceiptItem(name: text, qty: qty, price: price))
-            i += advance + 1
-        }
-        return items
-    }
-
-    private static func parseQtyFirstFormat(_ texts: [String]) -> [ReceiptItem] {
-        var items: [ReceiptItem] = []
-        let stop = stopIndex(in: texts)
-
-        let start: Int = {
-            for idx in 0..<stop {
-                let t = texts[idx].trimmingCharacters(in: .whitespaces)
-                guard t.firstMatch(of: qtyStandaloneRegex) != nil else { continue }
-                if idx + 1 < stop {
-                    let next = texts[idx + 1].trimmingCharacters(in: .whitespaces)
-                    if next.firstMatch(of: priceRegex) == nil && !isSkippable(next) && next.count > 2 {
-                        return idx
-                    }
-                }
-            }
-            return 0
-        }()
-
-        var i = start
-        while i < stop {
-            let text = texts[i].trimmingCharacters(in: .whitespaces)
-            if text.firstMatch(of: qtyStandaloneRegex) != nil, i + 1 < stop {
-                let qtyStr = text
-                let nameLine = texts[i + 1].trimmingCharacters(in: .whitespaces)
-                guard nameLine.firstMatch(of: priceRegex) == nil,
-                      !isSkippable(nameLine),
-                      nameLine.count > 2
-                else { i += 1; continue }
-
-                var price: String? = nil
-                var advance = 1
-                if i + 2 < stop {
-                    let afterName = texts[i + 2].trimmingCharacters(in: .whitespaces)
-                    if afterName.firstMatch(of: priceRegex) != nil && !isSkippable(afterName) {
-                        price = formatPrice(afterName)
-                        advance = 2
-                    }
-                }
-                items.append(ReceiptItem(name: nameLine, qty: qtyStr, price: price))
-                i += advance + 1
+            // Case C: Skip (header, noise, dll)
             } else {
                 i += 1
             }
         }
-        return items
+
+        return result
     }
 
     // MARK: - Total
 
-        //private static func extractTotal(from raw: [OCRText]) -> String? {
-    private static func extractTotal(from raw: [OCRText], imageHeight: Double) -> String? {
-        let threshold = rowThreshold(for: imageHeight)
+    private static func extractTotal(from raw: [OCRText]) -> String? {
+        let threshold = rowThreshold(from: raw)
 
-        // Cari token "Total:"
+        // Cari token "Total" (bukan "Subtotal")
         guard let totalToken = raw.first(where: {
-            $0.text.trimmingCharacters(in: .whitespaces)
+            let t = $0.text.trimmingCharacters(in: .whitespaces)
                 .lowercased()
                 .replacingOccurrences(of: ":", with: "")
-                .trimmingCharacters(in: .whitespaces) == "total"
+                .trimmingCharacters(in: .whitespaces)
+            return t == "total"
         }) else { return nil }
 
         let totalY = totalToken.bbox[0][1]
+        let totalX = totalToken.bbox[0][0]
 
-        // Cari token harga di baris yang sama (Y berdekatan, X lebih besar)
-        let candidate = raw
+        // Cari harga di baris yang sama (Y berdekatan), posisi X lebih kanan
+        let sameRow = raw
             .filter {
-                abs($0.bbox[0][1] - totalY) < 60          // same row
-                && $0.bbox[0][0] > totalToken.bbox[0][0]   // di sebelah kanan
+                abs($0.bbox[0][1] - totalY) < threshold * 2   // sedikit longgar untuk total
+                && $0.bbox[0][0] > totalX
                 && $0.text.firstMatch(of: priceRegex) != nil
             }
             .sorted { $0.bbox[0][0] < $1.bbox[0][0] }
-            .first
 
-        if let c = candidate {
-            return formatPrice(c.text)
+        if let found = sameRow.first {
+            return formatPrice(found.text)
         }
 
-        // Fallback: cari di baris tepat di bawah Total
+        // Fallback: baris tepat di bawah Total
+        let lineH = medianLineHeight(from: raw)
         return raw
             .filter {
                 $0.bbox[0][1] > totalY
-                && $0.bbox[0][1] < totalY + 120
+                && $0.bbox[0][1] < totalY + lineH * 2
                 && $0.text.firstMatch(of: priceRegex) != nil
             }
             .sorted { $0.bbox[0][1] < $1.bbox[0][1] }
@@ -342,32 +240,21 @@ struct ReceiptParser {
 
     // MARK: - Helpers
 
-    private static func stopIndex(in texts: [String]) -> Int {
-        texts.firstIndex(where: {
-            let t = $0.trimmingCharacters(in: .whitespaces)
-                .lowercased()
-                .replacingOccurrences(of: ":", with: "")
-                .trimmingCharacters(in: .whitespaces)
-            return t == "subtotal" || t == "sub total" || t == "total"
-        }) ?? texts.count
-    }
-
-    private static func startIndexForNameFirst(_ texts: [String], stop: Int) -> Int {
-        for idx in 0..<stop {
-            guard idx + 1 < stop else { break }
-            let next = texts[idx + 1].trimmingCharacters(in: .whitespaces)
-            let nextIsQty   = next.firstMatch(of: qtyAfterRegex) != nil
-            let nextIsPrice = next.firstMatch(of: priceRegex) != nil && !next.contains("-")
-            if nextIsQty || nextIsPrice { return idx }
+    /// Hapus prefix angka + spasi dari nama item, misal "1 Bread Butter" → "Bread Butter"
+    private static func cleanItemName(_ text: String) -> String {
+        // Format "1 Nama Item" — qty jadi prefix, buang saja untuk nama bersih
+        if let match = text.firstMatch(of: /^(\d+)\s+(.+)/),
+           Int(String(match.output.1)) != nil {
+            return String(match.output.2).trimmingCharacters(in: .whitespaces)
         }
-        return 0
+        return text
     }
 
     private static func isSkippable(_ text: String) -> Bool {
         let lower = text.lowercased()
         if lower.hasPrefix("-") || lower.hasPrefix("(") || lower.hasPrefix("[") { return true }
         for kw in skipKeywords {
-            if lower.hasPrefix(kw) { return true }
+            if lower.hasPrefix(kw) || lower.contains(kw) { return true }
         }
         return false
     }
@@ -377,7 +264,6 @@ struct ReceiptParser {
             .replacingOccurrences(of: "Rp", with: "")
             .replacingOccurrences(of: " ", with: "")
 
-        // jika ada format 43,500 -> ubah jadi 43.500
         if cleaned.contains(",") && !cleaned.contains(".") {
             cleaned = cleaned.replacingOccurrences(of: ",", with: ".")
         }

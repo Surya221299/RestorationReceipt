@@ -70,12 +70,6 @@ class ImageProcessor {
         return (floatArray, image.size, CGSize(width: width, height: height))
     }
 
-    // Converts a float array in NCHW format back to UIImage
-    // - Parameters:
-    //   - data: Float array in NCHW format with values in [0, 1]
-    //   - width: Image width
-    //   - height: Image height
-    // - Returns: UIImage
     static func postprocessImage(data: [Float], width: Int, height: Int) -> UIImage? {
         let pixelCount = width * height
 
