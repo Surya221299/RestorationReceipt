@@ -21,9 +21,7 @@
 
 /* Begin PBXBuildFile section */
 		01A503F76194B5DF3EB3A56DEE8EFF4F /* ort_enums.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD76E9B954AFF916E23B70B39C5A34 /* ort_enums.mm */; settings = {COMPILER_FLAGS = "-std=c++17 -fobjc-arc-exceptions -Wall -Wextra -Werror"; }; };
-		036E86806200B7F592E21F5E1E91575A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
 		038F3E697FC957E0581B0361F7B9FFAA /* Pods-ReceiptRestoration-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B38638DEF21D7A2F202CB65BAE7C761 /* Pods-ReceiptRestoration-dummy.m */; };
-		04A098FFE4DABE4F287FB34FA1A8569B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
 		1A29A07A4B07F116E5DE346A11B42DF8 /* ort_env_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = AABF5AB52AC175B8E2378F3DC70F5A77 /* ort_env_internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		212E81186049D17368E209C23CDECF50 /* ort_custom_op_registration.h in Headers */ = {isa = PBXBuildFile; fileRef = 0201D7CE607687AD5E32AF6EF86B9693 /* ort_custom_op_registration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2A255F8EF67BAE9360DC2B3538D38CD9 /* ort_enums.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEDB959E66C462AE7807CF94FB2C1BA /* ort_enums.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,10 +37,12 @@
 		4E31BEF4882126A808B4FBD779CEBC7D /* ort_session.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAAA544C1A12624C772F8174AEF6D7 /* ort_session.mm */; settings = {COMPILER_FLAGS = "-std=c++17 -fobjc-arc-exceptions -Wall -Wextra -Werror"; }; };
 		5194E938CF1D159B712CA564AE6C9AFD /* error_utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB8DC417E1F43D8EF0A2AB0ECF7C6BC8 /* error_utils.mm */; settings = {COMPILER_FLAGS = "-std=c++17 -fobjc-arc-exceptions -Wall -Wextra -Werror"; }; };
 		546922ED52EDF95D0925046D910B0581 /* ort_coreml_execution_provider.mm in Sources */ = {isa = PBXBuildFile; fileRef = E27097AC7B1D7937ADAF51CC6213D972 /* ort_coreml_execution_provider.mm */; settings = {COMPILER_FLAGS = "-std=c++17 -fobjc-arc-exceptions -Wall -Wextra -Werror"; }; };
+		5804FFA7C800DD3EFDE7195C3ACB2E9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB74A84DF62E0DBFFA4715EF79E08A1 /* Foundation.framework */; };
 		6EC5E215A8C55C69BD823B5D763F7350 /* cxx_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 469F226362150709129986E1BE2111EE /* cxx_utils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		85553BBF6844E989B7D9845DFBE8E297 /* ort_enums_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 5381A1CE0677DAD522B7C0B23ACC7DB4 /* ort_enums_internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8FC53237CB2F853CE0B363A3D909E690 /* ort_coreml_execution_provider.h in Headers */ = {isa = PBXBuildFile; fileRef = C0D70A7A9BC6D6773C3FB88D8F24A61F /* ort_coreml_execution_provider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9FDF77DEC6CAF46727C97FC223E9065E /* ort_value.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CA118C8D0FBBA6D20D6735CA75F3998 /* ort_value.mm */; settings = {COMPILER_FLAGS = "-std=c++17 -fobjc-arc-exceptions -Wall -Wextra -Werror"; }; };
+		A9349A328291347CF5E4397EACC24AC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB74A84DF62E0DBFFA4715EF79E08A1 /* Foundation.framework */; };
 		C2DE976B858813C6F16AF195FAB9BE46 /* ort_session.h in Headers */ = {isa = PBXBuildFile; fileRef = C902F1AEAB10C9CB5EC6FE46A3730286 /* ort_session.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5147303E58B21D59C53AAEA840A5FA7 /* ort_env.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82325CF89284DEAB56729B76BE3857C8 /* ort_env.mm */; settings = {COMPILER_FLAGS = "-std=c++17 -fobjc-arc-exceptions -Wall -Wextra -Werror"; }; };
 		CA35D93C40262887B2535F561E2BF134 /* cxx_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 156A076BE5181C62FFD1A84DADDA1F84 /* cxx_api.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -87,10 +87,10 @@
 		20FBE5DAE64155022C68E5F5F4A53E4D /* Pods-ReceiptRestoration-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ReceiptRestoration-umbrella.h"; sourceTree = "<group>"; };
 		27852FD06D6D40EDF82D7A88E94CCB88 /* Pods-ReceiptRestoration-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ReceiptRestoration-Info.plist"; sourceTree = "<group>"; };
 		2AEFA0DBFC21DD7D62E55FC7D417C8B9 /* onnxruntime_c_api.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = onnxruntime_c_api.h; path = Headers/onnxruntime_c_api.h; sourceTree = "<group>"; };
+		2CB74A84DF62E0DBFFA4715EF79E08A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		2CEDB959E66C462AE7807CF94FB2C1BA /* ort_enums.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ort_enums.h; path = objectivec/include/ort_enums.h; sourceTree = "<group>"; };
 		2F87549D683B8E409D6AAA03E591C539 /* ort_xnnpack_execution_provider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ort_xnnpack_execution_provider.h; path = objectivec/include/ort_xnnpack_execution_provider.h; sourceTree = "<group>"; };
 		346D18B06C12ACE35EABCF1D1964C631 /* assert_arc_enabled.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = assert_arc_enabled.mm; path = objectivec/assert_arc_enabled.mm; sourceTree = "<group>"; };
-		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3CBFDA2470700834EC6714EE9CC508D3 /* coreml_provider_factory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = coreml_provider_factory.h; path = Headers/coreml_provider_factory.h; sourceTree = "<group>"; };
 		3ECD76E9B954AFF916E23B70B39C5A34 /* ort_enums.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ort_enums.mm; path = objectivec/ort_enums.mm; sourceTree = "<group>"; };
 		469F226362150709129986E1BE2111EE /* cxx_utils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cxx_utils.h; path = objectivec/cxx_utils.h; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04A098FFE4DABE4F287FB34FA1A8569B /* Foundation.framework in Frameworks */,
+				5804FFA7C800DD3EFDE7195C3ACB2E9A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				036E86806200B7F592E21F5E1E91575A /* Foundation.framework in Frameworks */,
+				A9349A328291347CF5E4397EACC24AC6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +201,14 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/onnxruntime-c";
+			sourceTree = "<group>";
+		};
+		7AECBA61365544F357B06DE1C8710425 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2CB74A84DF62E0DBFFA4715EF79E08A1 /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		7B21C2CB43E9BCCAEE21068401DE3367 /* Core */ = {
@@ -288,7 +296,7 @@
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E4801F62A6B08CD9B5410329F1A18FDE /* iOS */,
+				7AECBA61365544F357B06DE1C8710425 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -300,14 +308,6 @@
 				56F6104EFF19589FC9FFD59354950B5D /* onnxruntime-objc */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		E4801F62A6B08CD9B5410329F1A18FDE /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 		F83EDEF53EA02CCDC93E0AD4F470B90B /* Targets Support Files */ = {
@@ -413,7 +413,7 @@
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			minimizedProjectReferenceProxies = 0;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 100;
 			productRefGroup = B693F74F98E44FAB542AED8025A9BEB0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

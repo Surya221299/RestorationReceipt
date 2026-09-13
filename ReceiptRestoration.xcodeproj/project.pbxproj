@@ -221,7 +221,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 53A19B2A2FBA18B100599F8E /* Build configuration list for PBXProject "MBG Receipt Restoration" */;
+			buildConfigurationList = 53A19B2A2FBA18B100599F8E /* Build configuration list for PBXProject "ReceiptRestoration" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -462,7 +462,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ReceiptRestoration/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MBG Receipt Restoration";
+				INFOPLIST_KEY_CFBundleDisplayName = ReceipTa;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture receipt images for restoration.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save restored receipt images to your photo library.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select receipt images for restoration.";
@@ -501,7 +501,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ReceiptRestoration/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MBG Receipt Restoration";
+				INFOPLIST_KEY_CFBundleDisplayName = ReceipTa;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture receipt images for restoration.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save restored receipt images to your photo library.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select receipt images for restoration.";
@@ -627,7 +627,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		53A19B2A2FBA18B100599F8E /* Build configuration list for PBXProject "MBG Receipt Restoration" */ = {
+		53A19B2A2FBA18B100599F8E /* Build configuration list for PBXProject "ReceiptRestoration" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				53A19B4E2FBA18B400599F8E /* Debug */,

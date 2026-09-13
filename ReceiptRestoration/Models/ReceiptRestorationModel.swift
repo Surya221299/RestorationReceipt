@@ -7,9 +7,10 @@
 
 import Foundation
 import UIKit
-import onnxruntime_objc
 
 #if canImport(onnxruntime_objc)
+import onnxruntime_objc
+
 class ReceiptRestorationModel {
     private var session: ORTSession?
     private var env: ORTEnv?
