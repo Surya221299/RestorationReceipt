@@ -46,7 +46,7 @@ RestorationReceipt/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Surya221299/RestorationReceipt.git
+   git clone github.com/Surya221299/RestorationReceipt.git
    cd RestorationReceipt-main
    ```
 
