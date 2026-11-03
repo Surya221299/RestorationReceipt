@@ -2,6 +2,8 @@
 
 An iOS application for scanning, restoring, and parsing paper receipts into structured expense records using on-device image preprocessing, ONNX machine learning models, and OCR.
 
+![Application Screenshot](screenshot.jpeg)
+
 ## Features
 
 - Camera & Photo Library Scanner: Live camera capture viewfinder and photo gallery picker.
